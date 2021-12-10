@@ -20,6 +20,7 @@ function App() {
   const [open, setOpen] = useState([false, false]);
   const [user, setUser] = useState(null);
   console.log("user",user)
+  
 
   useEffect(() => {
     fetch("/me")
