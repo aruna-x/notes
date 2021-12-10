@@ -21,7 +21,9 @@ function Login({ onLogin }){
       })
         .then(r => r.json())
         .then(user => onLogin(user))
-        .then(()=>history.push('/notes'));
+        .then(()=>{
+            history.push('/notes')
+        });
     }
 
     function handleChange(e){

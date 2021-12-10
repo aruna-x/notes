@@ -13,17 +13,19 @@ import EditNote from './EditNote';
 import NotFound from './NotFound';
 import SignUp from './SignUp';
 import Login from './Login';
+import NavBar from './NavBar';
 
 function App() {
 
   const [open, setOpen] = useState([false, false]);
   const [user, setUser] = useState(null);
+  console.log("user",user)
 
   useEffect(() => {
     fetch("/me")
     .then(r => {
       if (r.ok) { 
-        r.json().then((user) => setUser(user)); 
+        r.json().then((user) => setUser(user));
       }
     });
   }, []);
@@ -61,7 +63,7 @@ function App() {
       <Router>
         <Container>
         <Header size={'huge'}> <Container content={<img src={notesText}/>} textAlign={'center'} size={'huge'}/> </Header>
-        {/* {user ? <NavBar onLogout={setUser}/> : null} */}
+        {user ? <NavBar onLogout={setUser} setOpen={setOpen}/> : null}
         </Container>
         <Switch>
           <Route exact path="/">
