@@ -10,7 +10,7 @@ function Notes(){
     const history = useHistory();
 
     useEffect(()=>{
-        fetch(`http://localhost:3000/notes/`) // todo: on server side REPLACE "1" with user id !!!
+        fetch(`/notes`)
         .then(r => r.json())
         .then(data => {
             setNotes(data)
@@ -22,8 +22,7 @@ function Notes(){
     }
 
     let noteCards = <></>
-    if (notes != []) {
-        console.log(notes)
+    if (notes.length > 0) {
         noteCards = notes.map(n => {
             const description = n.thoughts.length > 200 ? n.thoughts.slice(0,197)+"..." : n.thoughts;
             const source = n.source.length > 40 ? n.source.slice(0,37)+"..." : n.source;
@@ -43,7 +42,7 @@ function Notes(){
     }
 
     function handleDelete(id){
-        fetch(`http://localhost:4000/notes/${id}`, {
+        fetch(`/notes/${id}`, {
             method: "DELETE"
         })
         .then(() => setNotes(notes.filter((n)=>n.id!==id)))
@@ -67,14 +66,14 @@ function Notes(){
     }
     
     return (
-        <>
+        <PageStyle>
             <Style>
-                <CollectionList/>
+                <CollectionList />
             </Style>
             <Card.Group centered>
                 {notes ? noteCards : null}
             </Card.Group>
-        </>
+        </PageStyle>
     )
 }
 
@@ -85,4 +84,9 @@ const Style = styled.div`
     margin: auto;
     display: flex;
     justify-content: center;
+`
+
+const PageStyle = styled.div`
+    max-width: 1300px;
+    margin: auto;
 `

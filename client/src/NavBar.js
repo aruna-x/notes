@@ -1,5 +1,6 @@
 import { Button, Container } from 'semantic-ui-react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 function NavBar({ onLogout, setOpen }){
     let history = useHistory();
@@ -13,12 +14,20 @@ function NavBar({ onLogout, setOpen }){
     }
     
     return(
-        <Container textAlign={'right'}>
-            <nav>
-                <Button basic={true} size={'tiny'} onClick={handleLogout}><a>Logout</a></Button>
-            </nav>
-        </Container>
+        <Spacer>
+            <Container textAlign={'center'}>
+                <nav>
+                    <Button basic={true} size={'tiny'}><Link to="/notes/new">New</Link></Button>
+                    <Button basic={true} size={'tiny'}><Link to="/notes">Notes</Link></Button>
+                    <Button basic={true} size={'tiny'} onClick={handleLogout}><a>Logout</a></Button>
+                </nav>
+            </Container>
+        </Spacer>
     )
 }
 
 export default NavBar;
+
+const Spacer = styled.div`
+    margin: 50px auto;
+`

@@ -9,7 +9,7 @@ function NoteForm({handleSubmit, formData, setFormData}){
     const [allCollections, setAllCollections] = useState()
 
     useEffect(()=>{
-        fetch(`http://localhost:3000/collections/`) // todo: on server side REPLACE "1" with user id !!!
+        fetch(`/collections`)
         .then(r => r.json())
         .then(data => {
             makeOptions(data)

@@ -20,7 +20,9 @@ function Login({ onLogin }){
         body: JSON.stringify(loginData),
       })
         .then(r => r.json())
-        .then(user => onLogin(user))
+        .then(user => {
+            onLogin(user)
+        })
         .then(()=>{
             history.push('/notes')
         });

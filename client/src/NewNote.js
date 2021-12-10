@@ -20,7 +20,7 @@ function NewNote() {
     function handleSubmit(inputData){
         const newNoteData = {...inputData, collections: inputData.collections.map(c => c.id)}
 
-        fetch("http://localhost:3000/notes", {
+        fetch("/notes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

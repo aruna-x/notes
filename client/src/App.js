@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from "react-router-dom";
 import { Container, Header, Button, Modal } from 'semantic-ui-react';
 import styled from 'styled-components';
 import notesText from './notes.png';
@@ -20,7 +20,7 @@ function App() {
   const [open, setOpen] = useState([false, false]);
   const [user, setUser] = useState(null);
   console.log("user",user)
-  
+
 
   useEffect(() => {
     fetch("/me")
@@ -60,10 +60,10 @@ function App() {
 }
 
   return (
-    <>
+    <Spacer>
       <Router>
         <Container>
-        <Header size={'huge'}> <Container content={<img src={notesText}/>} textAlign={'center'} size={'huge'}/> </Header>
+        <Header size={'huge'}> <Link to="/"><Container content={<img src={notesText}/>} textAlign={'center'} size={'huge'}/></Link> </Header>
         {user ? <NavBar onLogout={setUser} setOpen={setOpen}/> : null}
         </Container>
         <Switch>
@@ -79,7 +79,7 @@ function App() {
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>
-    </>
+    </Spacer>
   );
 }
 
@@ -92,6 +92,10 @@ const HomeHeader = styled.header`
 
 const P = styled.p`
   margin-top: 125px;
+`
+
+const Spacer = styled.div`
+  margin-top: 40px;
 `
 
       
